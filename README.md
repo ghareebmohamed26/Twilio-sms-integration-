@@ -1,15 +1,17 @@
-# Twilio SMS Integration for Real Project
+from twilio.rest import Client
 
-This project is part of an actual production setup for integrating Twilio SMS API into a backend system. It is used to send automated messages to users as part of a customer support and notification system.
+# Replace these with your actual Twilio credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+twilio_number = '+1234567890'  # Your Twilio phone number
+destination_number = '+201234567890'  # Number you want to send SMS to
 
-## Features
-- Send SMS using Twilio
-- Real Twilio account and verified number
-- Can be integrated into live backend systems
+client = Client(account_sid, auth_token)
 
-## Technologies
-- Python
-- Twilio REST API
+message = client.messages.create(
+    body="Hello from Twilio! This is a real project.",
+    from_=twilio_number,
+    to=destination_number
+)
 
-## Note
-This project is live and linked to a verified upgraded Twilio account. It is not a demo or test.
+print(f"Message sent. SID: {message.sid}")
